@@ -26,11 +26,15 @@ public class User extends BaseEntity{
     private String password;
     @Column(nullable = false)
     private String userName;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoleType userRole;
 
     @Builder
-    public User(String userId,String password, String userName) {
+    public User(String userId,String password, String userName, RoleType userRole) {
         this.userId = userId;
         this.password = password;
         this.userName = userName;
+        this.userRole = userRole;
     }
 }

@@ -1,4 +1,4 @@
-package com.basic.board.utils.jwt;
+package com.basic.board.config.jwt;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
