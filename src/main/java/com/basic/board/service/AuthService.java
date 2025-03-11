@@ -23,7 +23,7 @@ public class AuthService {
         // 사용자가 존재하는지 먼저 확인
         User user = userRepository.findByUserId(username);
         if (user == null) {
-            throw new UsernameNotFoundException("존재하지 않는 사용자입니다.");
+            throw new UsernameNotFoundException(""); // 오류 메시지는 글로벌 처리
         }
 
         // 사용자 인증

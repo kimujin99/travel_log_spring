@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<AuthDto.Response> handleUsernameNotFoundException(UsernameNotFoundException ex) {
-        AuthDto.Response response = new AuthDto.Response("존재하지 않는 사용자입니다.2");
+        AuthDto.Response response = new AuthDto.Response("존재하지 않는 사용자입니다.");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<AuthDto.Response> handleBadCredentialsException(BadCredentialsException ex) {
-        AuthDto.Response response = new AuthDto.Response("비밀번호가 잘못됐습니다.2");
+        AuthDto.Response response = new AuthDto.Response("비밀번호가 일치하지 않습니다.");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
