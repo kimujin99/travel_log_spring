@@ -13,4 +13,14 @@ public enum RoleType {
     public String getDescription() {
         return description;
     }
+
+    // String을 enum으로 변환하는 메서드
+    public static RoleType fromString(String role) {
+        for (RoleType userRole : RoleType.values()) {
+            if (userRole.name().equals(role)) {
+                return userRole;
+            }
+        }
+        throw new IllegalArgumentException("알 수 없는 권한: " + role);
+    }
 }

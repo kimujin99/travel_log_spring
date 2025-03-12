@@ -18,13 +18,17 @@ public class JwtService {
     public String generateToken(String username) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expirationTime);
-
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(now)
-                .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, secretKey.getBytes(StandardCharsets.UTF_8))  // 비밀키를 바이트 배열로 설정
-                .compact();
+        try {
+            return Jwts.builder()
+                    .setSubject(username)
+                    .setIssuedAt(now)
+                    .setExpiration(expiryDate)
+                    .signWith(SignatureAlgorithm.HS256, secretKey.getBytes(StandardCharsets.UTF_8))  // 비밀키를 바이트 배열로 설정
+                    .compact();
+        } catch (Exception e) {
+            e.printStackTrace();  // 실제 예외를 출력
+            throw new RuntimeException("Error generating token", e);
+        }
     }
 
     // ✅ 토큰에서 사용자 이름 추출

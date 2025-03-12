@@ -9,7 +9,7 @@ public class AuthDto {
     @Getter
     @Setter
     public static class Request {
-        private String username;
+        private String userId;
         private String password;
     }
 
