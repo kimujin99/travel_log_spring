@@ -1,6 +1,7 @@
 package com.basic.board.service;
 
 import com.basic.board.config.jwt.JwtService;
+import com.basic.board.model.DTO.AuthDto;
 import com.basic.board.model.DTO.RegistDto;
 import com.basic.board.model.Entity.RoleType;
 import com.basic.board.model.Entity.User;
@@ -23,9 +24,10 @@ public class AuthService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
-    public String authenticateUser(String userId, String password) {
+    public AuthDto.Response authenticateUser(String userId, String password) {
+        User user = userRepository.findByUserId(userId);
         // 사용자가 존재하는지 먼저 확인
-        if (!userRepository.existsByUserId(userId)) {
+        if (user == null) {
             throw new UsernameNotFoundException(""); // 오류 메시지는 글로벌 처리
         }
 
@@ -37,8 +39,8 @@ public class AuthService {
 
         // 인증 성공 시 JWT 토큰 생성
         String jwtToken = jwtService.generateToken(userId);
-
-        return jwtToken;
+        AuthDto.Response response = new AuthDto.Response(user.getUserId(), user.getUserName(), jwtToken);
+        return response;
     }
 
     public boolean duplicationCheckUserId(String userId) {

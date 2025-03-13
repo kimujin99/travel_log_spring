@@ -16,6 +16,8 @@ public class AuthDto {
     @Getter
     @AllArgsConstructor
     public static class Response {
+        private String userId;
+        private String userName;
         private String token;
     }
 }
