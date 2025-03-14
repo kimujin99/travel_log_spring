@@ -7,6 +7,7 @@ import com.basic.board.model.Entity.RoleType;
 import com.basic.board.model.Entity.User;
 import com.basic.board.service.DAO.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

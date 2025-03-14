@@ -33,6 +33,6 @@ public class AuthController {
     @PostMapping("/regist")
     public ResponseEntity<?> regist(@Valid @RequestBody RegistDto.RegistRequest request) {
         authService.registerUser(request);
-        return ResponseEntity.ok("회원가입이 완료되었습니다.");
+        return ResponseEntity.ok("");
     }
 }
