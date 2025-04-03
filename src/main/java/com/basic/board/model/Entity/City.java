@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="countries"
+        name="cities"
 )
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Country {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sn;
@@ -20,23 +20,14 @@ public class Country {
     @Column(nullable = false)
     private String isoAlpha2;
     @Column(nullable = false)
-    private String isoAlpha3;
-    @Column(nullable = false)
     private String englishName;
     @Column(nullable = false)
     private String koreanName;
-    @Column(nullable = false)
-    private String visaRequirement;
-    @Column(nullable = false)
-    private String voltage;
 
     @Builder
-    public Country(String isoAlpha2, String isoAlpha3, String englishName, String koreanName, String visaRequirement, String voltage) {
+    public City(String isoAlpha2, String englishName, String koreanName) {
         this.isoAlpha2 = isoAlpha2;
-        this.isoAlpha3 = isoAlpha3;
         this.englishName = englishName;
         this.koreanName = koreanName;
-        this.visaRequirement = visaRequirement;
-        this.voltage = voltage;
     }
 }
