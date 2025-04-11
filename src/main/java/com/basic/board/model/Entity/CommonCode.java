@@ -8,26 +8,29 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="CITIES"
+        name="COMMON_CODE"
 )
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class City {
+public class CommonCode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sn;
 
     @Column(nullable = false)
-    private String isoAlpha2;
+    private String groupCode;
     @Column(nullable = false)
-    private String cityEnName;
+    private String Code;
     @Column(nullable = false)
-    private String cityKrName;
+    private String CodeName;
+    @Column
+    private String remark;
 
     @Builder
-    public City(String isoAlpha2, String cityEnName, String cityKrName) {
-        this.isoAlpha2 = isoAlpha2;
-        this.cityEnName = cityEnName;
-        this.cityKrName = cityKrName;
+    public CommonCode(String groupCode, String Code, String CodeName, String remark) {
+        this.groupCode = groupCode;
+        this.Code = Code;
+        this.CodeName = CodeName;
+        this.remark = remark;
     }
 }

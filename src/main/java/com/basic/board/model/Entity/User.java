@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-    name="users",
+    name="USERS",
     uniqueConstraints = {
         @UniqueConstraint(name = "UK_user_userId", columnNames = "userId")
     }

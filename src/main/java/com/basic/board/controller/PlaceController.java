@@ -1,7 +1,8 @@
 package com.basic.board.controller;
 
-import com.basic.board.model.DTO.CountryDto;
-import com.basic.board.service.MapService;
+import com.basic.board.model.DTO.ApiResponse;
+import com.basic.board.model.DTO.CountryInfoDto;
+import com.basic.board.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/api/map")
+@RequestMapping("/api/place")
 @RequiredArgsConstructor
-public class MapController {
+public class PlaceController {
 
-    private final MapService mapService;
+    private final PlaceService placeService;
 
-    @GetMapping("/searchCountry")
+    @GetMapping("/searchCountryInfo")
     public ResponseEntity<?> searchCountryInfo (@RequestParam String isoAlpha2) {
         try {
-            CountryDto.Response response = mapService.searchCountryInfo(isoAlpha2);
+            ApiResponse<CountryInfoDto.CombinedResponse> response = placeService.searchCountryInfo(isoAlpha2);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            // 서버 콘솔에 오류 로그 출력
             System.err.println("🔥 오류 발생: " + e.getMessage());
-            e.printStackTrace();  // 스택 트레이스 출력
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("서버에서 오류가 발생했습니다.");
         }
